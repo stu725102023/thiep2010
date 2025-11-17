@@ -1,0 +1,220 @@
+/* Cài đặt chung */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: #fef6f8; /* Màu nền hồng nhạt chung */
+    overflow: hidden; /* Ẩn thanh cuộn */
+}
+
+/* --- PHẦN BÌ THƯ --- */
+.bi-thu-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 90vh;
+    transition: opacity 0.5s ease-out, visibility 0s 0.5s;
+}
+
+.bi-thu {
+    width: 280px;
+    height: 180px;
+    position: relative;
+    cursor: pointer;
+    transform-style: preserve-3d; /* Cho phép xoay 3D */
+    perspective: 1000px; /* Độ sâu 3D */
+}
+
+.phong-bi-truoc {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #fcefee; /* Màu hồng bì thư */
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+}
+
+.phong-bi-sau {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #f9dbe5; /* Màu đậm hơn chút */
+    border-radius: 10px;
+    z-index: 1;
+}
+
+.nap-bi-thu {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    background-color: #fcefee; /* Cùng màu với mặt trước */
+    z-index: 11;
+    clip-path: polygon(0 0, 100% 0, 50% 100%); /* Hình tam giác */
+    transform-origin: top; /* Xoay từ cạnh trên */
+    transition: transform 0.5s ease-in-out;
+}
+
+.thiep-ben-trong {
+    position: absolute;
+    width: 90%;
+    height: 85%;
+    background-color: #fff;
+    bottom: 0;
+    left: 5%;
+    border-radius: 5px;
+    z-index: 5;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.05);
+    transition: transform 0.5s ease-in-out;
+    padding: 10px;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+/* Các chi tiết giả trên thiệp bên trong bì */
+.dau-thiep-nho {
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+    color: #d9534f;
+    padding-bottom: 5px;
+    border-bottom: 1px dashed #eee;
+}
+.than-thiep-nho {
+    margin-top: 10px;
+    height: 80px;
+    background: linear-gradient(to bottom, #eee 10px, transparent 10px) repeat-y;
+    background-size: 100% 15px; /* Giả các dòng chữ */
+    opacity: 0.5;
+}
+
+/* --- HIỆU ỨNG MỞ BÌ THƯ (KHI THÊM LỚP .open) --- */
+
+.bi-thu.open .nap-bi-thu {
+    transform: rotateX(180deg); /* Lật nắp lên */
+    z-index: 3;
+}
+
+.bi-thu.open .thiep-ben-trong {
+    transform: translateY(-100px); /* Đẩy thiệp lên */
+}
+
+/* --- PHẦN THIỆP CHÍNH --- */
+.thiep-chinh-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0; /* Ban đầu ẩn */
+    visibility: hidden; /* Ban đầu ẩn hoàn toàn */
+    transform: scale(0.8); /* Hiệu ứng zoom */
+    transition: opacity 0.5s ease-in, transform 0.5s ease-in, visibility 0s 0.5s;
+}
+
+/* Khi thiệp hiện ra (thêm lớp .show) */
+.thiep-chinh-wrapper.show {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1);
+    transition-delay: 0s, 0s, 0s;
+}
+
+.thiep {
+    max-width: 600px;
+    width: 90%;
+    margin: 0 auto;
+    background-color: #ffffff;
+    border: 1px solid #eee;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    padding: 25px;
+    /* Trang trí hoa */
+    background-image: url('hoa2.png');
+    background-repeat: no-repeat;
+    background-position: bottom 10px right 10px;
+    background-size: 200px;
+    max-height: 90vh;
+    overflow-y: auto; /* Cho phép cuộn nếu nội dung quá dài */
+}
+
+.dau-thiep {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    color: #d9534f;
+    border-bottom: 2px dashed #fcefee;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+}
+
+.than-thiep h3 {
+    font-size: 20px;
+    color: #333;
+}
+
+.than-thiep p {
+    font-size: 17px;
+    line-height: 1.7;
+    color: #555;
+}
+
+.than-thiep img {
+    width: 100%;
+    border-radius: 10px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.than-thiep .chu-ky {
+    text-align: right;
+    font-style: italic;
+    font-size: 18px;
+    margin-top: 30px;
+}
+
+/* --- PHẦN TRÁI TIM (ĐÃ SỬA LỖI XUNG ĐỘT) --- */
+
+/* Chỉ định nghĩa .tron MỘT LẦN */
+.tron {
+    background-color: #d9534f;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    /* Dịch chuyển tâm trái tim cho đúng */
+    transform: translate(-50%, -60%); 
+    z-index: 12; /* Nằm trên mặt bì thư */
+    opacity: 0.7;
+    /* Áp dụng animation */
+    animation: an-trai-tim 1.5s infinite ease-in-out;
+}
+
+
+/* Chỉ định nghĩa @keyframes MỘT LẦN */
+@keyframes an-trai-tim {
+    0%, 100% {
+        /* Ta chỉ thay đổi scale và opacity
+           transform: translate() đã được đặt cố định ở .tron
+        */
+        transform: translate(-50%, -60%) scale(1);
+        opacity: 0.7;
+    }
+    50% {
+        transform: translate(-50%, -60%) scale(1.1);
+        opacity: 1;
+    }
+}
